@@ -33,8 +33,8 @@ def stockInfo():
 
 def financialData():
     print(f"" + Back.WHITE + Fore.BLACK + " Financial Information about " + symbol + " \n")
-    d1 = ticker.history(period="7d")
-    print(d1)
+    rawData = ticker.history(period="7d")
+    print(rawData)
 
 def cont():
     input("\nPress [ENTER] to continue ")
