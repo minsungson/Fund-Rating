@@ -1,15 +1,7 @@
-import requests
+import yfinance as yf
 
-url = "https://yfapi.net/v6/finance/quote"
+ticker = yf.Ticker("VUSA")
+start='2020-09-15',
+end='2020-11-15',
 
-ticker = input("Enter the ticker you would like a rating of: ")
-
-querystring = {"symbols": ticker}
-
-headers = {
-    'x-api-key': "YCTzB50g5m3n2HUE6R8lYpSKCnzRF4BL4W1GAd00"
-    }
-
-response = requests.request("GET", url, headers=headers, params=querystring)
-
-print(response.text)
+print(ticker.info)
