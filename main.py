@@ -1,6 +1,7 @@
 from locale import currency
 import yfinance as yf
 import os
+from datetime import date
 import colorama
 from colorama import Fore, Back
 colorama.init(autoreset=True)
@@ -31,8 +32,9 @@ def stockInfo():
     cont()
 
 def financialData():
-    print(f"" + Back.WHITE + Fore.BLACK + " Financial Information about " + symbol + " ")
-    print(ticker.history(period="7d"))
+    print(f"" + Back.WHITE + Fore.BLACK + " Financial Information about " + symbol + " \n")
+    d1 = ticker.history(period="7d")
+    print(d1)
 
 def cont():
     input("\nPress [ENTER] to continue ")
