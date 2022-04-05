@@ -8,8 +8,7 @@ colorama.init(autoreset=True)
 
 def stockInfo():
     os.system("clear")
-    print(f"" + Back.WHITE + Fore.BLACK + " Basic Information about " + symbol + " ")
-    print(f"\nStock name: " + Fore.YELLOW + ticker.info["shortName"])
+    print(f"" + Back.WHITE + Fore.BLACK + " Basic Information about " + ticker.info["shortName"] + " \n")
     print(f"Sector: " + Fore.YELLOW + ticker.info["sector"])
     print(f"Country: " + Fore.YELLOW + ticker.info["country"])
     print(f"Exchange Time Zone: " + Fore.YELLOW + ticker.info["exchangeTimezoneName"])
@@ -17,7 +16,7 @@ def stockInfo():
     cont()
 
 def financialData():
-    print(f"" + Back.WHITE + Fore.BLACK + " Financial Information about " + symbol + " \n")
+    print(f"" + Back.WHITE + Fore.BLACK + " Financial Information about " + ticker.info["shortName"] + " \n")
     rawData = ticker.history(period="7d")
     print(rawData)
     cont()
