@@ -14,22 +14,29 @@ ticker = yf.Ticker(symbol)
 start='2020-09-15',
 end='2020-11-15',
 
-global shortName, tz, sector, country
 shortName = ticker.info["shortName"]
 tz = ticker.info["exchangeTimezoneName"]
 country = ticker.info["country"]
 currencyS = ticker.info["financialCurrency"]
+sector = ticker.info["sector"]
 
 
 def stockInfo():
-    print(f"" + Back.WHITE + Fore.BLACK + "Stock Information")
+    print(f"" + Back.WHITE + Fore.BLACK + " Basic Information about " + symbol + " ")
     print(f"\nStock name: " + Fore.YELLOW + shortName)
-    print(f"Exchange Time Zone: " + Fore.YELLOW + tz)
+    print(f"Sector: " + Fore.YELLOW + sector)
     print(f"Country: " + Fore.YELLOW + country)
+    print(f"Exchange Time Zone: " + Fore.YELLOW + tz)
     print(f"Currency: " + Fore.YELLOW + currencyS)
     cont()
 
+def financialData():
+    print(f"" + Back.WHITE + Fore.BLACK + " Financial Information about " + symbol + " ")
+    print(ticker.history(period="7d"))
+
 def cont():
     input("\nPress [ENTER] to continue ")
+    os.system("clear")
 
 stockInfo()
+financialData()
