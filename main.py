@@ -1,10 +1,12 @@
-from locale import currency
 import yfinance as yf
 import os
-from datetime import date
+from datetime import datetime, timedelta
 import colorama
 from colorama import Fore, Back
 colorama.init(autoreset=True)
+
+startDate = datetime.today()
+endDate = startDate - timedelta(days=7)
 
 def stockInfo():
     os.system("clear")
@@ -17,7 +19,7 @@ def stockInfo():
 
 def financialData():
     print(f"" + Back.WHITE + Fore.BLACK + " Financial Information about " + ticker.info["shortName"] + " \n")
-    rawData = ticker.history(period="7d")
+    rawData = ticker.info["regularMarketPreviousClose"] # latest market close
     print(rawData)
     cont()
 
@@ -28,7 +30,8 @@ def cont():
 def run():
     os.system("clear")
     global symbol, ticker
-    symbol = input("Enter the ticker you would like a rating of: ")
+    # symbol = input("Enter the ticker you would like a rating of: ")
+    symbol = "GOOGL" # set static for debugging
     ticker = yf.Ticker(symbol)
     stockInfo()
     financialData()
