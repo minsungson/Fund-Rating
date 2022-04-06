@@ -2,13 +2,14 @@ from curses import raw
 import yfinance as yf
 import os
 from datetime import datetime, timedelta
-import pandas as pd
 import colorama
+import pandas as pd
 from colorama import Fore, Back
 colorama.init(autoreset=True)
 
 startDate = datetime.today()
-endDate = startDate - timedelta(days=7)
+endDate = startDate + \
+    timedelta(days=7)
 
 def stockInfo():
     os.system("clear")
@@ -27,9 +28,12 @@ def financialData():
     cont()
 
 def calculation():
-    sigma = rawData.values.sum()
-    print("Σ open =", sigma)
-    print("     x̄ =", sigma/7)
+    df = pd.DataFrame(rawData)
+    list = df['Open'].values.tolist()
+    # sigma = rawData.sum()
+    # print("Σ open =", sigma)
+    # print("     x̄ =", sigma/7)
+    print(type(rawData))
 
 def cont():
     input("\nPress [ENTER] to continue ")
@@ -42,7 +46,7 @@ def run():
     symbol = "GOOGL" # set static for debugging
     ticker = yf.Ticker(symbol)
     # stockInfo()
-    financialData()
+    # financialData()
     calculation()
 
 run()
