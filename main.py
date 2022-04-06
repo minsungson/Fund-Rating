@@ -1,6 +1,8 @@
+from curses import raw
 import yfinance as yf
 import os
 from datetime import datetime, timedelta
+import pandas as pd
 import colorama
 from colorama import Fore, Back
 colorama.init(autoreset=True)
@@ -19,9 +21,15 @@ def stockInfo():
 
 def financialData():
     print(f"" + Back.WHITE + Fore.BLACK + " Financial Information about " + ticker.info["shortName"] + " \n")
-    rawData = ticker.info["regularMarketPreviousClose"] # latest market close
-    print(rawData)
+    global rawData
+    rawData = ticker.history(period="7d")
+    print(rawData[["Open"]])
     cont()
+
+def calculation():
+    sigma = rawData.values.sum()
+    print("Σ open =", sigma)
+    print("     x̄ =", sigma/7)
 
 def cont():
     input("\nPress [ENTER] to continue ")
@@ -33,7 +41,8 @@ def run():
     # symbol = input("Enter the ticker you would like a rating of: ")
     symbol = "GOOGL" # set static for debugging
     ticker = yf.Ticker(symbol)
-    stockInfo()
+    # stockInfo()
     financialData()
+    calculation()
 
 run()
