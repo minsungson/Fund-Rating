@@ -23,7 +23,7 @@ def stockInfo():
 def financialData():
     print(f"" + Back.WHITE + Fore.BLACK + " Financial Information about " + ticker.info["shortName"] + " \n")
     global rawData
-    rawData = ticker.history(period="7d")
+    # rawData = ticker.history(period="7d")
     print(rawData[["Open"]])
     cont()
 
