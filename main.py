@@ -29,7 +29,7 @@ def financialData():
 
 def calculation():
     df = pd.DataFrame(rawData)
-    list = df['Open'].values.tolist()
+    # list = df['Open'].values.tolist()
     # sigma = rawData.sum()
     # print("Σ open =", sigma)
     # print("     x̄ =", sigma/7)
