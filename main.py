@@ -49,4 +49,4 @@ def run():
     # financialData()
     calculation()
 
-run()
+# run()
