@@ -1,4 +1,3 @@
-from curses import raw
 import yfinance as yf
 import os
 from datetime import datetime, timedelta
@@ -43,7 +42,7 @@ def run():
     os.system("clear")
     global symbol, ticker
     # symbol = input("Enter the ticker you would like a rating of: ")
-    symbol = "GOOGL" # set static for debugging
+    symbol = "VUSA" # set static for debugging
     ticker = yf.Ticker(symbol)
     # stockInfo()
     # financialData()
