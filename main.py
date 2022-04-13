@@ -72,9 +72,10 @@ def run():
     while True:
         os.system("clear")
         global symbol, ticker
-        # symbol = input("Enter the ticker you would like a rating of: ")
+        # symbol = input("Enter a ticker symbol: ")
         symbol = "GOOGL" # set static for debugging
         ticker = yf.Ticker(symbol)
+        os.system("clear")
         if (ticker.info['regularMarketPrice'] == None):
             print("Cannot get info on " + Fore.RED + symbol + Fore.RESET + ", it probably does not exist.\n\nTry again.")
             cont()
