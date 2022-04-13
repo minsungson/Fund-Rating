@@ -12,15 +12,16 @@ endDate = startDate + \
 
 def stockInfo():
     os.system("clear")
-    print(f"" + Back.WHITE + Fore.BLACK + " Basic Information about " + ticker.info["shortName"] + " \n")
-    print(f"Sector: " + Fore.YELLOW + ticker.info["sector"])
-    print(f"Country: " + Fore.YELLOW + ticker.info["country"])
-    print(f"Exchange Time Zone: " + Fore.YELLOW + ticker.info["exchangeTimezoneName"])
-    print(f"Currency: " + Fore.YELLOW + ticker.info["financialCurrency"])
+    print("" + Back.WHITE + Fore.BLACK + " Basic Information about " + ticker.info["shortName"] + " \n")
+    print("Sector: " + Fore.YELLOW + ticker.info["sector"])
+    print("Country: " + Fore.YELLOW + ticker.info["country"])
+    print("Exchange Time Zone: " + Fore.YELLOW + ticker.info["exchangeTimezoneName"])
+    print("Currency: " + Fore.YELLOW + ticker.info["financialCurrency"])
+    print("Currency: " + Fore.YELLOW + ticker.info["financialCurrency"])
     cont()
 
 def financialData():
-    print(f"" + Back.WHITE + Fore.BLACK + " Financial Information about " + ticker.info["shortName"] + " \n")
+    print("" + Back.WHITE + Fore.BLACK + " Financial Information about " + ticker.info["shortName"] + " \n")
     global rawData
     # rawData = ticker.history(period="7d")
     print(rawData[["Open"]])
@@ -48,4 +49,4 @@ def run():
     # financialData()
     calculation()
 
-# run()
+run()
