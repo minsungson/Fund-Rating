@@ -1,4 +1,5 @@
 import yfinance as yf
+import sys
 import os
 import colorama
 import pandas as pd
@@ -60,7 +61,9 @@ def financialData():
 def calculation():
     print("" + Back.WHITE + Fore.BLACK + " Statistical Analysis for " + ticker.info["shortName"] + " \n")
     print("Σx =", sigma)
-    print(" x̄ =", sigma/7)
+    global mean
+    mean = sigma/7
+    print(" x̄ =", mean)
     print(" n =", len(df.axes[0]))
     global stdev
     stdev = df["Open"].std()
@@ -68,9 +71,30 @@ def calculation():
     cont()
 
 def output():
-    lowStdev = ticker.info["regularMarketPrice"] - stdev
-    highStdev = ticker.info["regularMarketPrice"] + stdev
-    print("The Std. Deviation for the past week is " + Fore.YELLOW + str(int(stdev)) + Fore.RESET + " and the current market price is " + Fore.YELLOW + str(ticker.info["regularMarketPrice"]) + ticker.info["financialCurrency"])
+    lowStdev = mean - stdev
+    highStdev = mean + stdev
+    print("The standard deviation for the past week is " + Fore.YELLOW + str(int(stdev)) + Fore.RESET + " and the current market price is " + Fore.YELLOW + str(ticker.info["regularMarketPrice"]) + ticker.info["financialCurrency"] + ".\n")
+    if ticker.info["regularMarketPrice"] > highStdev:
+        print("As the current market price is greater than 1 Std. Dev. above the mean," + Fore.RED + " Sell")
+    elif ticker.info["regularMarketPrice"] < lowStdev:
+        print("As the current market price is greater than 1 Std. Dev. below the mean," + Fore.RED + " Buy")
+    elif ticker.info["regularMarketPrice"] < 2*lowStdev:
+        print("As the current market price is greater than 2 Std. Dev. below the mean," + Fore.RED + " Strong buy")
+    elif ticker.info["regularMarketPrice"] > 2*highStdev:
+        print("As the current market price is greater than 2 Std. Dev. above the mean," + Fore.RED + " Strong Sell")
+    cont()
+
+def again():
+    while True:
+        wieder = input("Would you like to check another stock? [y/n]: ")
+        if wieder == "y":
+            run()
+            break
+        elif wieder == "n":
+            sys.exit()
+        else:
+            print("Invalid option, try again")
+            cont()
 
 def cont():
     input("\nPress [ENTER] to continue ")
@@ -80,8 +104,7 @@ def run():
     while True:
         os.system("clear")
         global symbol, ticker
-        # symbol = input("Enter a ticker symbol: ")
-        symbol = "GOOGL" # set static for debugging
+        symbol = input("Enter a ticker symbol: ")
         ticker = yf.Ticker(symbol)
         os.system("clear")
         if (ticker.info['regularMarketPrice'] == None):
@@ -93,5 +116,6 @@ def run():
     financialData()
     calculation()
     output()
+    again()
 
 run()
