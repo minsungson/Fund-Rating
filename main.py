@@ -78,7 +78,9 @@ def output():
     lowStdev = mean - stdev
     highStdev = mean + stdev
     print("The standard deviation for the past week is " + Fore.YELLOW + str(int(stdev)) + Fore.RESET + " and the current market price is " + Fore.YELLOW + str(ticker.info["regularMarketPrice"]) + ticker.info["financialCurrency"] + ".\n")
-    if ticker.info["regularMarketPrice"] > highStdev:
+    if lowStdev <= ticker.info["regularMarketPrice"] <= highStdev:
+        print("As the current market price is between than 1 Std. Dev. above and below the mean," + Fore.RED + " Hold")    
+    elif ticker.info["regularMarketPrice"] > highStdev:
         print("As the current market price is greater than 1 Std. Dev. above the mean," + Fore.RED + " Sell")
     elif ticker.info["regularMarketPrice"] < lowStdev:
         print("As the current market price is greater than 1 Std. Dev. below the mean," + Fore.RED + " Buy")
