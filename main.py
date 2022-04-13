@@ -56,6 +56,10 @@ def financialData():
     df = pd.DataFrame(pastOpen)
     global sigma
     sigma = df["Open"].sum()
+    if df.empty:
+        print("\nyFinance does not hold data for this stock/fund!")
+        cont()
+        again()
     cont()
 
 def calculation():
