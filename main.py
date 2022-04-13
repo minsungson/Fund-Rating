@@ -1,3 +1,4 @@
+from this import d
 import yfinance as yf
 import os
 from datetime import datetime, timedelta
@@ -51,18 +52,19 @@ def stockInfo():
 
 def financialData():
     print("" + Back.WHITE + Fore.BLACK + " Financial Information about " + ticker.info["shortName"] + " \n")
-    global rawData
-    # rawData = ticker.history(period="7d")
-    print(rawData[["Open"]]) # regularMarketOpen
+    global pastOpen
+    pastOpen = ticker.history(period="7d")
+    print(pastOpen[["Open"]]) # regularMarketOpen
+    df = pd.DataFrame(pastOpen)
+    global sigma
+    sigma = df["Open"].sum()
     cont()
 
-# # def calculation():
-# #     df = pd.DataFrame(rawData)
-# #     list = df['Open'].values.tolist()
-# #     # sigma = rawData.sum()
-# #     # print("Σ open =", sigma)
-# #     # print("     x̄ =", sigma/7)
-# #     print(type(rawData))
+def calculation():
+    sigma = pastOpen.sum(axis=1)
+    print("Σ open =", sigma)
+    print("     x̄ =", sigma/7)
+    print(type(pastOpen))
 
 def cont():
     input("\nPress [ENTER] to continue ")
@@ -82,8 +84,7 @@ def run():
         else:
             stockInfo()
             break
-
-    # financialData()
+    financialData()
     # calculation()
 
 run()
