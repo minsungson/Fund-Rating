@@ -11,19 +11,6 @@ startDate = datetime.today()
 endDate = startDate + \
     timedelta(days=7)
 
-class stock():
-    def __init__(self, sector, country, exchangeTimezoneName, financialCurrency, ISIN, majorHolders, instututionalHolders):
-        self.sector = sector
-        self.country = country
-        self.exchangeTimezoneName = exchangeTimezoneName
-        self.financialCurrency = financialCurrency
-        self.ISIN = ISIN
-        self.major_holders = majorHolders
-        self.institutional_holders = instututionalHolders
-
-    def getStats(self):
-        return [self.sector, self.country, self.exchangeTimezoneName, self.financialCurrency, self.ISIN, self.major_holders, self.institutional_holders]
-
 def stockInfo():
     os.system("clear")
     print("" + Back.WHITE + Fore.BLACK + " Basic Information about " + ticker.info["shortName"] + " \n")
