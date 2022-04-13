@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+from this import d
+>>>>>>> 8238c660e2600bcf9fae8a323dcd89534d94cc55
 import yfinance as yf
 import os
 import colorama
@@ -79,7 +83,11 @@ def run():
             stockInfo()
             break
     financialData()
+<<<<<<< HEAD
     calculation()
+=======
+    # calculation()
+>>>>>>> 8238c660e2600bcf9fae8a323dcd89534d94cc55
 
 run()
 
