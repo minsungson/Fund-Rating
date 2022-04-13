@@ -26,7 +26,6 @@ class stock():
 
 def stockInfo():
     os.system("clear")
-<<<<<<< HEAD
     print("" + Back.WHITE + Fore.BLACK + " Basic Information about " + ticker.info["shortName"] + " \n")
     print("Sector: " + Fore.YELLOW + ticker.info["sector"])
     print("Country: " + Fore.YELLOW + ticker.info["country"])
@@ -40,23 +39,6 @@ def financialData():
     # rawData = ticker.history(period="7d")
     print(rawData[["Open"]])
     cont()
-=======
-    ticker.getStats()
-    # print("" + Back.WHITE + Fore.BLACK + " Basic Information about " + ticker.info["shortName"] + " \n")
-    # print("Sector: " + Fore.YELLOW + ticker.info["sector"])
-    # print("Country: " + Fore.YELLOW + ticker.info["country"])
-    # print("Exchange Time Zone: " + Fore.YELLOW + ticker.info["exchangeTimezoneName"])
-    # print("Currency: " + Fore.YELLOW + ticker.info["financialCurrency"])
-    # print("ISIN: " + Fore.YELLOW + ticker.info["financialCurrency"])
-    cont()
-
-# def financialData():
-#     print("" + Back.WHITE + Fore.BLACK + " Financial Information about " + ticker.info["shortName"] + " \n")
-#     # global rawData
-#     # rawData = ticker.history(period="7d")
-#     # print(rawData[["Open"]])
-#     cont()
->>>>>>> 91fff7ea6404e223968358dbc9ba8d6692f7f92b
 
 # # def calculation():
 # #     df = pd.DataFrame(rawData)
