@@ -90,18 +90,18 @@ def output():
 
 def again():
     while True:
-        wieder = input("Would you like to check another stock? [y/n]: ")
+        wieder = input("Would you like to check another stock/fund? [y/n]: ")
         if wieder == "y":
             run()
             break
         elif wieder == "n":
             sys.exit()
         else:
-            print("Invalid option, try again")
+            print("Invalid option, try again.")
             cont()
 
 def cont():
-    input("\nPress [ENTER] to continue ")
+    input("\nPress [ENTER] to continue")
     os.system("clear")
 
 def run():
