@@ -18,19 +18,19 @@ def stockInfo():
     if "sector" in ticker.info:
         print("Sector: " + Fore.YELLOW + ticker.info["sector"])
     else:
-        print("Sector" + Fore.RED + "N/A")
+        print("Sector: " + Fore.RED + "N/A")
     if "country" in ticker.info:
         print("Country: " + Fore.YELLOW + ticker.info["country"])
     else:
-        print("Country" + Fore.RED + "N/A")
+        print("Country: " + Fore.RED + "N/A")
     if "exchangeTimezoneName" in ticker.info:
         print("Trading Time Zone: " + Fore.YELLOW + ticker.info["exchangeTimezoneName"])
     else:
-        print("Trading Time Zone " + Fore.RED + "N/A")
+        print("Trading Time Zone: " + Fore.RED + "N/A")
     if "financialCurrency" in ticker.info:
         print("Trading Currency: " + Fore.YELLOW + ticker.info["financialCurrency"])
     else:
-        print("Trading Currrency: " + Fore.RED + "/A")
+        print("Trading Currrency: " + Fore.RED + "N/A")
     if "isin" in ticker.info:
         print("ISIN: " + Fore.YELLOW + ticker.info["isin"])
     else:
@@ -73,7 +73,7 @@ def run():
     os.system("clear")
     global symbol, ticker
     # symbol = input("Enter the ticker you would like a rating of: ")
-    symbol = "GOOGL" # set static for debugging
+    symbol = "VUSA" # set static for debugging
     ticker = yf.Ticker(symbol)
     stockInfo()
     # financialData()
