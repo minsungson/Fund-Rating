@@ -53,7 +53,7 @@ def stockInfo():
 def financialData():
     print("" + Back.WHITE + Fore.BLACK + " Financial Information about " + ticker.info["shortName"] + " \n")
     global pastOpen
-    pastOpen = ticker.history(period="7d")
+    pastOpen = ticker.history(period="1mo")
     print(pastOpen[["Open"]]) # regularMarketOpen
     df = pd.DataFrame(pastOpen)
     global sigma
