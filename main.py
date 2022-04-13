@@ -1,11 +1,8 @@
-<<<<<<< HEAD
-=======
-from this import d
->>>>>>> 8238c660e2600bcf9fae8a323dcd89534d94cc55
 import yfinance as yf
 import os
 import colorama
 import pandas as pd
+import numpy as np
 from colorama import Fore, Back
 colorama.init(autoreset=True)
 
@@ -52,17 +49,28 @@ def stockInfo():
 def financialData():
     print("" + Back.WHITE + Fore.BLACK + " Financial Information about " + ticker.info["shortName"] + " \n")
     global pastOpen
-    pastOpen = ticker.history(period="1w")
+    pastOpen = ticker.history(period="7d")
     print(pastOpen[["Open"]]) # regularMarketOpen
+    global df
     df = pd.DataFrame(pastOpen)
     global sigma
     sigma = df["Open"].sum()
     cont()
 
 def calculation():
-    print("Σ open =", sigma)
-    print("     x̄ =", sigma/7)
-    print(type(pastOpen))
+    print("" + Back.WHITE + Fore.BLACK + " Statistical Analysis for " + ticker.info["shortName"] + " \n")
+    print("Σx =", sigma)
+    print(" x̄ =", sigma/7)
+    print(" n =", len(df.axes[0]))
+    global stdev
+    stdev = df["Open"].std()
+    print(" σ =", int(stdev), "(to the nearest integer)")
+    cont()
+
+def output():
+    lowStdev = ticker.info["regularMarketPrice"] - stdev
+    highStdev = ticker.info["regularMarketPrice"] + stdev
+    print("The Std. Deviation for the past week is " + Fore.YELLOW + str(int(stdev)) + Fore.RESET + " and the current market price is " + Fore.YELLOW + str(ticker.info["regularMarketPrice"]) + ticker.info["financialCurrency"])
 
 def cont():
     input("\nPress [ENTER] to continue ")
@@ -83,13 +91,7 @@ def run():
             stockInfo()
             break
     financialData()
-<<<<<<< HEAD
     calculation()
-=======
-    # calculation()
->>>>>>> 8238c660e2600bcf9fae8a323dcd89534d94cc55
+    output()
 
 run()
-
-# ticker = yf.Ticker("GOOGL")
-# print(ticker.isin)
