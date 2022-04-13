@@ -90,7 +90,7 @@ def output():
 
 def again():
     while True:
-        wieder = input("Would you like to check another stock? [y/n]: ")
+        wieder = input("Would you like to check another stock/fund? [y/n]: ")
         if wieder == "y":
             run()
             break
