@@ -1,4 +1,3 @@
-from locale import currency
 import yfinance as yf
 import os
 from datetime import datetime, timedelta
@@ -13,7 +12,7 @@ endDate = startDate + \
 
 def stockInfo():
     os.system("clear")
-    print("" + Back.WHITE + Fore.BLACK + " Basic Information about " + ticker.info["shortName"] + " \n")
+    print("" + Back.WHITE + Fore.BLACK + " Basic Investor Info for " + ticker.info["shortName"] + " \n")
     # print("Sector: " + Fore.YELLOW + ticker.info["sector"])
     if "sector" in ticker.info:
         print("Sector: " + Fore.YELLOW + ticker.info["sector"])
@@ -54,7 +53,7 @@ def financialData():
     print("" + Back.WHITE + Fore.BLACK + " Financial Information about " + ticker.info["shortName"] + " \n")
     global rawData
     # rawData = ticker.history(period="7d")
-    print(rawData[["Open"]])
+    print(rawData[["Open"]]) # regularMarketOpen
     cont()
 
 # # def calculation():
@@ -70,12 +69,19 @@ def cont():
     os.system("clear")
 
 def run():
-    os.system("clear")
-    global symbol, ticker
-    # symbol = input("Enter the ticker you would like a rating of: ")
-    symbol = "VUSA" # set static for debugging
-    ticker = yf.Ticker(symbol)
-    stockInfo()
+    while True:
+        os.system("clear")
+        global symbol, ticker
+        # symbol = input("Enter the ticker you would like a rating of: ")
+        symbol = "GOOGL" # set static for debugging
+        ticker = yf.Ticker(symbol)
+        if (ticker.info['regularMarketPrice'] == None):
+            print("Cannot get info on " + Fore.RED + symbol + Fore.RESET + ", it probably does not exist.\n\nTry again.")
+            cont()
+        else:
+            stockInfo()
+            break
+
     # financialData()
     # calculation()
 
