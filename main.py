@@ -16,14 +16,14 @@ def stockInfo():
             print(i + Fore.RED + str(ticker.info.get(m)))
         else:
             print(i + Fore.YELLOW + str(ticker.info.get(m)))
-    cont()
-
-def financialData():
-    print("" + Back.WHITE + Fore.BLACK + " Financial Information about " + ticker.info["shortName"] + " \n")
     global pastOpen
     pastOpen = ticker.history(period = "7d")
     global df
     df = pd.DataFrame(pastOpen)
+    cont()
+
+def financialData():
+    print("" + Back.WHITE + Fore.BLACK + " Market Open Price of the Past " + str(len(df.axes[0])) + " Days for " + ticker.info["symbol"] + " \n")
     if df.empty == False:
         print(pastOpen[["Open"]])
         global sigma
@@ -39,12 +39,12 @@ def calculation():
     print("" + Back.WHITE + Fore.BLACK + " Statistical Analysis for " + ticker.info["shortName"] + " \n")
     print("Σx =", sigma)
     global mean
-    mean = sigma/7
+    mean = sigma/len(df.axes[0])
     print(" x̄ =", mean)
     print(" n =", len(df.axes[0]))
     global stdev
     stdev = df["Open"].std()
-    print(" σ =", int(stdev), "(to the nearest integer)")
+    print(" σ =", int(stdev))
     cont()
 
 def output():
