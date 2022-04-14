@@ -21,14 +21,16 @@ def stockInfo():
 def financialData():
     print("" + Back.WHITE + Fore.BLACK + " Financial Information about " + ticker.info["shortName"] + " \n")
     global pastOpen
-    pastOpen = ticker.history(period="7d")
-    print(pastOpen[["Open"]])
+    pastOpen = ticker.history(period = "7d")
     global df
     df = pd.DataFrame(pastOpen)
-    global sigma
-    sigma = df["Open"].sum()
-    if df.empty:
-        print("\nyFinance does not hold data for this stock/fund!")
+    if df.empty == False:
+        print(pastOpen[["Open"]])
+        global sigma
+        sigma = df["Open"].sum()
+    else:
+        quotetype = str(ticker.info["quoteType"])
+        print(Fore.RED + "\nyFinance does not hold data for this " + quotetype.lower() + "!")
         cont()
         again()
     cont()
