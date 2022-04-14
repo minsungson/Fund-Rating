@@ -7,11 +7,9 @@ import numpy as np
 from colorama import Fore, Back
 colorama.init(autoreset=True)
 
-
 def stockInfo():
     os.system("clear")
     print("" + Back.WHITE + Fore.BLACK + " Basic Investor Info for " + ticker.info["shortName"] + " \n")
-    # print("Sector: " + Fore.YELLOW + ticker.info["sector"])
     if "sector" in ticker.info:
         print("Sector: " + Fore.YELLOW + ticker.info["sector"])
     else:
@@ -51,7 +49,7 @@ def financialData():
     print("" + Back.WHITE + Fore.BLACK + " Financial Information about " + ticker.info["shortName"] + " \n")
     global pastOpen
     pastOpen = ticker.history(period="7d")
-    print(pastOpen[["Open"]]) # regularMarketOpen
+    print(pastOpen[["Open"]])
     global df
     df = pd.DataFrame(pastOpen)
     global sigma
