@@ -22,7 +22,7 @@ def stockInfo():
     cont()
 
 def financialData():
-    print("" + Back.WHITE + Fore.BLACK + " Market Open Price of the Past " + str(len(df.axes[0])) + " Days for " + ticker.info["symbol"] + " \n")
+    print("" + Back.WHITE + Fore.BLACK + " Market Open Price for the Past " + str(len(df.axes[0])) + " Days for " + ticker.info["symbol"] + " \n")
     if df.empty == False:
         print(pastOpen[["Open"]])
         global sigma
