@@ -6,19 +6,20 @@ import pandas as pd
 from colorama import Fore, Back
 colorama.init(autoreset=True)
 
+
 def stockInfo():
     os.system("clear")
     print("" + Back.WHITE + Fore.BLACK + " Basic Info about " + ticker.info["shortName"] + " (" + ticker.info["symbol"] + ") \n")
     key = {"Type: ": "quoteType", "Sector: ": "sector", "Country: ": "country", "Trading Time Zone: ": "exchangeTimezoneShortName: ", "Trading Currency: ": "financialCurrency: ", "ISIN: ": "isin", "Current Price: ": "regularMarketPrice", "Summary: ": "longBusinessSummary"}
+    global pastOpen
+    pastOpen = ticker.history(period = "7d")  
+    global df
+    df = pd.DataFrame(pastOpen)     
     for i, m in key.items():
         if ticker.info.get(m) == None:
             print(i + Fore.RED + str(ticker.info.get(m)))
         else:
             print(i + Fore.YELLOW + str(ticker.info.get(m)))
-    global pastOpen
-    pastOpen = ticker.history(period = "7d")
-    global df
-    df = pd.DataFrame(pastOpen)
     cont()
 
 def financialData():
@@ -28,8 +29,7 @@ def financialData():
         global sigma
         sigma = df["Open"].sum()
     else:
-        quotetype = str(ticker.info["quoteType"])
-        print(Fore.RED + "\nyFinance does not hold data for this " + quotetype.lower() + "!")
+        print(Fore.RED + "yFinance does not hold data for this " + ticker.info["quoteType"] + "!")
         cont()
         again()
     cont()
