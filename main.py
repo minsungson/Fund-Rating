@@ -3,7 +3,6 @@ import sys
 import os
 import colorama
 import pandas as pd
-import numpy as np
 from colorama import Fore, Back
 colorama.init(autoreset=True)
 
@@ -96,5 +95,6 @@ def run():
     calculation()
     output()
     again()
+
 
 run()
