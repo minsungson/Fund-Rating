@@ -6,12 +6,6 @@ Using past market performance, the script will calculate the standard deviation 
 ## Installation
 1. Install the dependancies 
 ``` 
-pip3 install yFinance 
-```
-```
-pip3 install colorama
-```
-```
-pip3 install pandas
+pip3 install yFinance colorama pandas
 ```
 2. Run main.py and enter your ticker symbol
